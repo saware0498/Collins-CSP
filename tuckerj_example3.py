@@ -1,4 +1,12 @@
-team_name = 'King of the world'
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
+
+team_name = 'E3'
 strategy_name = 'Copy and be king'
 strategy_description = '''\
 Collude first round. Copy Betray if they Betray'''
