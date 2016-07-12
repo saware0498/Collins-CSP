@@ -1,20 +1,29 @@
-'''This change is for testing and should only be in the testing branch'''
-import random
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'c' or 'b'
+####
 
-team_name = 'Shane'
-strategy_name = 'Shane'
-strategy_description = 'Only one way to survive a zombie attack'
+team_name = 'Nathan Nolte team' # Only 10 chars displayed.
+strategy_name = 'The name the team gives to this strategy'
+strategy_description = 'How does this strategy decide?'
     
 def move(my_history, their_history, my_score, their_score):
+    ''' Arguments accepted: my_history, their_history are strings.
+    my_score, their_score are ints.
     
-    if 'b' in their_history[-3:]: 
-        return 'b'               
-        if random.random()<0.8: 
-            return 'b'         
-        else:
-            return 'c'         
+    Make my move.
+    Returns 'c' or 'b'. 
     
+    This should be incorporated into the master branch.
+    '''
 
+    
+    return 'b'
+
+    
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
