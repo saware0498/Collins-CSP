@@ -1,6 +1,6 @@
 import random
 
-team_name = 'T0'
+team_name = 'Shane'
 strategy_name = 'Shane'
 strategy_description = 'Only one way to survive a zombie attack'
     
