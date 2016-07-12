@@ -1,3 +1,5 @@
+import random
+
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -6,35 +8,34 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = 'Jennifer'
+strategy_name = 'Beat them at their own game'
+strategy_description = 'I am going to beat the opponent at their own game.  If they collude a lot, then I am going to collude more (build trust).  If they betray a lot, then I am going to betray more.  And if the average number of times they collude is between 25% and 75%, then I am going to betray them just a little more than they betray me.'
     
 def move(my_history, their_history, my_score, their_score):
-    ''' Arguments accepted: my_history, their_history are strings.
-    my_score, their_score are ints.
-    
-    Make my move.
-    Returns 'c' or 'b'. 
-    '''
-    if len(my_history)==0: # It's the first round; collude.
+    history = their_history
+    if(my_history==''):
         return 'c'
-    elif my_history[-1]=='c' or their_history[-1]=='b':
-        return 'b' # Betray if they were severely punished last time,
+    if(len(my_history)>10):
+        history = their_history[-10]
+    numColludes = 0.0
+    avgColludes = 0.0
+    for letter in history:
+        if(letter=='c'):
+            numColludes+=1
+    avgColludes = numColludes/len(history)
+    print(avgColludes)
+    if avgColludes>.75:
+        probability=avgColludes+0.02
+    elif avgColludes<0.25:
+        probability=avgColludes-0.25
     else:
-        return 'c' # otherwise collude.
+        probability = avgColludes-0.05
+    if random.random()<probability:
+        return 'c'
+    else:
+        return 'b'
 
-    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
-    # their_history: a string of the same length as history, possibly empty. 
-    # The first round between these two players is my_history[0] and their_history[0].
-    # The most recent round is my_history[-1] and their_history[-1].
-    
-    # Analyze my_history and their_history and/or my_score and their_score.
-    # Decide whether to return 'c' or 'b'.
-    
-    return 'c'
-
-    
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
